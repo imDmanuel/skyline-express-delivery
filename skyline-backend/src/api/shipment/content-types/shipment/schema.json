@@ -1,0 +1,100 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shipments",
+  "info": {
+    "singularName": "shipment",
+    "pluralName": "shipments",
+    "displayName": "Shipment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tracking_number": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "ship_date": {
+      "type": "date",
+      "required": true
+    },
+    "estimated_delivery_date": {
+      "type": "date"
+    },
+    "weight": {
+      "type": "decimal"
+    },
+    "origin_city": {
+      "type": "string",
+      "required": true
+    },
+    "origin_state": {
+      "type": "string",
+      "required": true
+    },
+    "origin_country": {
+      "type": "string",
+      "required": true
+    },
+    "destination_city": {
+      "type": "string",
+      "required": true
+    },
+    "destination_state": {
+      "type": "string",
+      "required": true
+    },
+    "destination_country": {
+      "type": "string",
+      "required": true
+    },
+    "shipment_length": {
+      "type": "string"
+    },
+    "shipment_width": {
+      "type": "string"
+    },
+    "shipment_height": {
+      "type": "string"
+    },
+    "recipient_name": {
+      "type": "string",
+      "required": true
+    },
+    "recipient_address": {
+      "type": "string"
+    },
+    "recipient_phone": {
+      "type": "string"
+    },
+    "recipient_email": {
+      "type": "string",
+      "required": true
+    },
+    "shipper_name": {
+      "type": "string"
+    },
+    "shipper_address": {
+      "type": "string"
+    },
+    "shipper_phone": {
+      "type": "string"
+    },
+    "shipper_email": {
+      "type": "string"
+    },
+    "contents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::shipment-content.shipment-content"
+    },
+    "shipment_events": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::shipment-event.shipment-event"
+    }
+  }
+}

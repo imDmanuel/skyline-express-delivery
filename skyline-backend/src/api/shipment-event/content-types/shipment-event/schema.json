@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shipment_events",
+  "info": {
+    "singularName": "shipment-event",
+    "pluralName": "shipment-events",
+    "displayName": "Shipment Event",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "event_id": {
+      "type": "customField",
+      "customField": "plugin::field-uuid.uuid"
+    },
+    "timestamp": {
+      "type": "datetime"
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "In Transit",
+        "Dispatched",
+        "Processing",
+        "Delivered",
+        "Confirmed"
+      ],
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
