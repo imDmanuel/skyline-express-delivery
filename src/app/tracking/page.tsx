@@ -14,21 +14,25 @@ import { redirect } from "next/navigation";
 import { ShipmentTimeline } from "@/components/shipment-timeline";
 import axios, { AxiosError, isAxiosError } from "axios";
 import { env } from "@/lib/env";
-import { ShipmentApiResponse } from "@/lib/types";
+import { Shipment, ShipmentApiResponse } from "@/lib/types";
 
 export default async function TrackingPage({
   searchParams: { trackingId },
 }: {
   searchParams: { trackingId: string };
 }) {
-  // const [queryResponse, setQueryResponse] = useState<
-  //   ShipmentApiResponse | null | undefined
-  // >(undefined);
-
-  // useEffect(() => {
-  async function fetchData() {
+  async function fetchData(): Promise<
+    | {
+        success: true;
+        data: Shipment;
+      }
+    | {
+        success: false;
+        message: string;
+      }
+  > {
     try {
-      const response = await axios.post<ShipmentApiResponse>(
+      let response = await axios.post<ShipmentApiResponse>(
         `http://localhost:3000/api`,
         {
           url: `${env.NEXT_PUBLIC_API_BASE_URL}/shipments/?filters[tracking_number][$eq]=${trackingId}&populate=*`,
@@ -40,23 +44,37 @@ export default async function TrackingPage({
         }
       );
 
-      return response.data;
-    } catch (e) {}
+      return { success: true, data: response.data.data[0] };
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        return {
+          success: false,
+          message: e.response?.data.message || "Something went wrong..",
+        };
+      }
+
+      if (e instanceof Error) {
+        return {
+          success: false,
+          message: e.message || "Something went wrong..",
+        };
+      }
+
+      return {
+        success: false,
+        message: "Something went wrong..",
+      };
+    }
   }
 
   const queryResponse = await fetchData();
-  // }, [trackingId]);
 
-  if (queryResponse === undefined) {
-    // TODO: SHOW ERROR MESSAGE
-    return <div>Loading....</div>;
-  }
-  if (queryResponse === null) {
-    // TODO: SHOW ERROR MESSAGE
-    return <div>Query failed!</div>;
+  // TODO: DISPLAY PROPER ERROR MESSAGE
+  if (queryResponse.success === false) {
+    return <div>{queryResponse.message}</div>;
   }
 
-  const shipmentDetail = queryResponse.data[0].attributes;
+  const shipmentDetail = queryResponse.data.attributes;
 
   const latestEventIndex = shipmentDetail.shipment_events.data.length - 1;
 
@@ -218,43 +236,43 @@ export default async function TrackingPage({
               Shipment details
             </div>
 
-            <div className="shipment-details grid grid-rows-4 gap-x-5 grid-flow-col">
-              <div className="">
+            <div className="shipment-details text-sm flex flex-wrap">
+              <div className="w-1/2">
                 <div>Tracking number: </div>
                 <div>{shipmentDetail.tracking_number}</div>
               </div>
 
-              <div className="">
+              <div className="w-1/2">
                 <div>Weight: </div>
                 <div>{shipmentDetail.weight}</div>
               </div>
 
-              <div className="">
+              <div className="w-1/2">
                 <div>Total pieces: </div>
                 <div>{shipmentDetail.contents.data.length}</div>
               </div>
 
-              <div className="">
+              <div className="w-1/2">
                 <div>Special handling: </div>
                 <div></div>
               </div>
 
-              <div className="">
+              <div className="w-1/2">
                 <div>Packaging: </div>
                 <div></div>
               </div>
 
-              <div className="">
+              <div className="w-1/2">
                 <div>Estimated delivery date: </div>
                 <div>{shipmentDetail.estimated_delivery_date}</div>
               </div>
 
-              <div className="">
+              <div className="w-1/2">
                 <div>Shipping date: </div>
                 <div>{shipmentDetail.ship_date}</div>
               </div>
 
-              <div className="">
+              <div className="w-1/2">
                 <div>Shipping method: </div>
                 <div></div>
               </div>

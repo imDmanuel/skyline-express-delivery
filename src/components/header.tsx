@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Logo from "@/assets/images/logo.png";
 import { Button } from "./ui/button";
 import Link from "next/link";
@@ -10,19 +10,34 @@ import { Input } from "./ui/input";
 import { trackPackage } from "@/lib/actions";
 import { routes } from "@/lib/routes";
 import { useToast } from "./ui/use-toast";
+import { FaSpinner } from "react-icons/fa6";
+import { experimental_useFormStatus } from "react-dom";
 
 function Header() {
   const { toast } = useToast();
+  const { pending } = experimental_useFormStatus();
+
+  const [fetchingData, setFetchingData] = useState(false);
+
   const onTrackPackage = async (formData: FormData) => {
+    setFetchingData(true);
+    // setTimeout(async () => {
     const status = await trackPackage(formData);
-    if (status.success === false) {
-      // TODO: SHOW ERROR MESSAGE
-      toast({ title: "Error", description: status.message });
+    if (status?.success === false) {
+      toast({
+        title: "Error",
+        description: status.message,
+        variant: "destructive",
+      });
     }
+    // }, 3000);
+    setFetchingData(false);
   };
 
+  // console.log(fetchingData);
+
   return (
-    <header className="bg-white h-20 flex items-center overflow-hidden">
+    <header className="bg-white h-20 flex items-center overflow-hidden border-b">
       <div className="container flex items-center justify-between gap-5 font-medium">
         {/* LOGO */}
         <Link href={"/"}>
@@ -31,7 +46,7 @@ function Header() {
         {/* END LOGO */}
 
         {/* NAV MENU */}
-        <nav>
+        <nav className="hidden md:block">
           <ul className="flex gap-10 text-sm">
             {routes.map(({ title, href }) => (
               <li key={href}>
@@ -62,8 +77,16 @@ function Header() {
                   placeholder="Enter your tracking number"
                 />
 
-                <Button variant={"secondary"} className="mt-2 w-full">
-                  Track
+                <Button
+                  disabled={pending}
+                  variant={"secondary"}
+                  className="mt-2 w-full"
+                >
+                  {fetchingData ? (
+                    <FaSpinner className="animate-spin" />
+                  ) : (
+                    "Track"
+                  )}
                 </Button>
               </form>
             </div>

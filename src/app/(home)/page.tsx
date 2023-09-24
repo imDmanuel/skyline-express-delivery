@@ -4,7 +4,7 @@ import HomeHero from "@/assets/images/home-hero.jpg";
 import AleaBrandLogo from "@/assets/images/alea-brand-logo.png";
 import BoatTripsBrandLogo from "@/assets/images/boattrips-brand-logo.png";
 import GoldStarBrandLogo from "@/assets/images/goldstar-brand-logo.png";
-import KangarooExpressDeliveryLogo from "@/assets/images/kangarooexpress-brand-logo.gif";
+import KangarooExpressDeliveryLogo from "@/assets/images/kangarooexpress-brand-logo.png";
 import LogisticsDeliveryLogo from "@/assets/images/logistics-delivery-logo.png";
 import RoboticArmWarehouse from "@/assets/images/robotic arm2.jpg";
 import ShipTrainPlaneTruck from "@/assets/images/ship-train-plane-truck.png";
@@ -257,25 +257,25 @@ export default function Home() {
                     </TimelineItemContent>
                   </TimelineItem>
                   <TimelineItem>
-                    <TimelineItemIcon icon={MonitorIcon} />
+                    <TimelineItemIcon icon={MoneyIcon} />
                     <TimelineItemContent title="Payment successful">
                       Payoneer, Paypal, or Visa master card
                     </TimelineItemContent>
                   </TimelineItem>
                   <TimelineItem>
-                    <TimelineItemIcon icon={MonitorIcon} />
+                    <TimelineItemIcon icon={ForkliftIcon} />
                     <TimelineItemContent title="Warehoulse receives order">
                       Check the accuracy of the goods
                     </TimelineItemContent>
                   </TimelineItem>
                   <TimelineItem>
-                    <TimelineItemIcon icon={MonitorIcon} />
+                    <TimelineItemIcon icon={PlaneIcon} />
                     <TimelineItemContent title="Item picked, packed & shipped">
                       Ship the goods to a local carrier
                     </TimelineItemContent>
                   </TimelineItem>
                   <TimelineItem isLast>
-                    <TimelineItemIcon icon={MonitorIcon} />
+                    <TimelineItemIcon icon={BrowserIcon} />
                     <TimelineItemContent title="Delivered & Measure success">
                       Update order status on the system
                     </TimelineItemContent>
@@ -350,7 +350,7 @@ export default function Home() {
               {/* END TITLE */}
 
               {/* IMAGES */}
-              <div className="grid grid-cols-2 gap-5">
+              <div className="grid grid-cols-2 gap-3">
                 <Image src={CargoShipArialView} alt="" className="col-span-2" />
                 <Image src={PersonReceivingPackage} alt="" />
                 <Image src={WorkerInVan} alt="" />

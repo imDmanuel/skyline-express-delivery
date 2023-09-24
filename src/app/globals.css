@@ -87,11 +87,7 @@
   }
 
   .shipment-details > div {
-    @apply px-2 py-3 grid grid-cols-[2fr_5fr];
-  }
-
-  .shipment-details > div:nth-child(odd) {
-    @apply bg-gray-100;
+    @apply px-2 py-3 grid grid-cols-[2fr_5fr] border-b;
   }
 
   .shipment-details > div {
