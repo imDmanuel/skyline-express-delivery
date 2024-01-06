@@ -11,16 +11,13 @@ import { trackPackage } from "@/lib/actions";
 import { routes } from "@/lib/routes";
 import { useToast } from "./ui/use-toast";
 import { FaSpinner } from "react-icons/fa6";
-import { experimental_useFormStatus } from "react-dom";
+import { experimental_useFormStatus as useFormStatus } from "react-dom";
 
 function Header() {
   const { toast } = useToast();
-  const { pending } = experimental_useFormStatus();
-
-  const [fetchingData, setFetchingData] = useState(false);
+  const { pending } = useFormStatus();
 
   const onTrackPackage = async (formData: FormData) => {
-    setFetchingData(true);
     // setTimeout(async () => {
     const status = await trackPackage(formData);
     if (status?.success === false) {
@@ -31,7 +28,6 @@ function Header() {
       });
     }
     // }, 3000);
-    setFetchingData(false);
   };
 
   // console.log(fetchingData);
@@ -41,7 +37,7 @@ function Header() {
       <div className="container flex items-center justify-between gap-5 font-medium">
         {/* LOGO */}
         <Link href={"/"}>
-          <Image src={Logo} alt="Brand Logo" />
+          <Image src={Logo} alt="Brand Logo" className="max-sm:w-40" />
         </Link>
         {/* END LOGO */}
 
@@ -82,11 +78,7 @@ function Header() {
                   variant={"secondary"}
                   className="mt-2 w-full"
                 >
-                  {fetchingData ? (
-                    <FaSpinner className="animate-spin" />
-                  ) : (
-                    "Track"
-                  )}
+                  {pending ? <FaSpinner className="animate-spin" /> : "Track"}
                 </Button>
               </form>
             </div>

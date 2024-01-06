@@ -361,6 +361,141 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiShipmentShipment extends Schema.CollectionType {
+  collectionName: 'shipments';
+  info: {
+    singularName: 'shipment';
+    pluralName: 'shipments';
+    displayName: 'Shipment';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    tracking_number: Attribute.String & Attribute.Required & Attribute.Unique;
+    ship_date: Attribute.Date & Attribute.Required;
+    estimated_delivery_date: Attribute.Date;
+    weight: Attribute.Decimal;
+    origin_city: Attribute.String & Attribute.Required;
+    origin_state: Attribute.String & Attribute.Required;
+    origin_country: Attribute.String & Attribute.Required;
+    destination_city: Attribute.String & Attribute.Required;
+    destination_state: Attribute.String & Attribute.Required;
+    destination_country: Attribute.String & Attribute.Required;
+    shipment_length: Attribute.String;
+    shipment_width: Attribute.String;
+    shipment_height: Attribute.String;
+    recipient_name: Attribute.String & Attribute.Required;
+    recipient_address: Attribute.String;
+    recipient_phone: Attribute.String;
+    recipient_email: Attribute.String & Attribute.Required;
+    shipper_name: Attribute.String;
+    shipper_address: Attribute.String;
+    shipper_phone: Attribute.String;
+    shipper_email: Attribute.String;
+    contents: Attribute.Relation<
+      'api::shipment.shipment',
+      'oneToMany',
+      'api::shipment-content.shipment-content'
+    >;
+    shipment_events: Attribute.Relation<
+      'api::shipment.shipment',
+      'oneToMany',
+      'api::shipment-event.shipment-event'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::shipment.shipment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::shipment.shipment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiShipmentContentShipmentContent
+  extends Schema.CollectionType {
+  collectionName: 'shipment_contents';
+  info: {
+    singularName: 'shipment-content';
+    pluralName: 'shipment-contents';
+    displayName: 'Shipment Content';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    item_name: Attribute.String;
+    item_description: Attribute.String & Attribute.Required;
+    item_quantity: Attribute.String & Attribute.Required;
+    item_value: Attribute.String;
+    item_id: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::shipment-content.shipment-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::shipment-content.shipment-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiShipmentEventShipmentEvent extends Schema.CollectionType {
+  collectionName: 'shipment_events';
+  info: {
+    singularName: 'shipment-event';
+    pluralName: 'shipment-events';
+    displayName: 'Shipment Event';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    event_id: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
+    timestamp: Attribute.DateTime;
+    location: Attribute.String & Attribute.Required;
+    status: Attribute.Enumeration<
+      ['In Transit', 'Dispatched', 'Processing', 'Delivered', 'Confirmed']
+    > &
+      Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::shipment-event.shipment-event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::shipment-event.shipment-event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -676,141 +811,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiShipmentShipment extends Schema.CollectionType {
-  collectionName: 'shipments';
-  info: {
-    singularName: 'shipment';
-    pluralName: 'shipments';
-    displayName: 'Shipment';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    tracking_number: Attribute.String & Attribute.Required & Attribute.Unique;
-    ship_date: Attribute.Date & Attribute.Required;
-    estimated_delivery_date: Attribute.Date;
-    weight: Attribute.Decimal;
-    origin_city: Attribute.String & Attribute.Required;
-    origin_state: Attribute.String & Attribute.Required;
-    origin_country: Attribute.String & Attribute.Required;
-    destination_city: Attribute.String & Attribute.Required;
-    destination_state: Attribute.String & Attribute.Required;
-    destination_country: Attribute.String & Attribute.Required;
-    shipment_length: Attribute.String;
-    shipment_width: Attribute.String;
-    shipment_height: Attribute.String;
-    recipient_name: Attribute.String & Attribute.Required;
-    recipient_address: Attribute.String;
-    recipient_phone: Attribute.String;
-    recipient_email: Attribute.String & Attribute.Required;
-    shipper_name: Attribute.String;
-    shipper_address: Attribute.String;
-    shipper_phone: Attribute.String;
-    shipper_email: Attribute.String;
-    contents: Attribute.Relation<
-      'api::shipment.shipment',
-      'oneToMany',
-      'api::shipment-content.shipment-content'
-    >;
-    shipment_events: Attribute.Relation<
-      'api::shipment.shipment',
-      'oneToMany',
-      'api::shipment-event.shipment-event'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::shipment.shipment',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::shipment.shipment',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiShipmentContentShipmentContent
-  extends Schema.CollectionType {
-  collectionName: 'shipment_contents';
-  info: {
-    singularName: 'shipment-content';
-    pluralName: 'shipment-contents';
-    displayName: 'Shipment Content';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    item_name: Attribute.String;
-    item_description: Attribute.String & Attribute.Required;
-    item_quantity: Attribute.String & Attribute.Required;
-    item_value: Attribute.String;
-    item_id: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::shipment-content.shipment-content',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::shipment-content.shipment-content',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiShipmentEventShipmentEvent extends Schema.CollectionType {
-  collectionName: 'shipment_events';
-  info: {
-    singularName: 'shipment-event';
-    pluralName: 'shipment-events';
-    displayName: 'Shipment Event';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    event_id: Attribute.UID & Attribute.CustomField<'plugin::field-uuid.uuid'>;
-    timestamp: Attribute.DateTime;
-    location: Attribute.String & Attribute.Required;
-    status: Attribute.Enumeration<
-      ['In Transit', 'Dispatched', 'Processing', 'Delivered', 'Confirmed']
-    > &
-      Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::shipment-event.shipment-event',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::shipment-event.shipment-event',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/strapi' {
   export module Shared {
     export interface ContentTypes {
@@ -821,15 +821,15 @@ declare module '@strapi/strapi' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::shipment.shipment': ApiShipmentShipment;
+      'api::shipment-content.shipment-content': ApiShipmentContentShipmentContent;
+      'api::shipment-event.shipment-event': ApiShipmentEventShipmentEvent;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::shipment.shipment': ApiShipmentShipment;
-      'api::shipment-content.shipment-content': ApiShipmentContentShipmentContent;
-      'api::shipment-event.shipment-event': ApiShipmentEventShipmentEvent;
     }
   }
 }

@@ -89,7 +89,7 @@ export default async function TrackingPage({
           </div>
           {/* END TRACKING NUMBER */}
 
-          <div className="grid gap-4 grid-cols-[3fr_5fr]">
+          <div className="grid gap-4 grid-cols-1 md:grid-cols-[3fr_5fr]">
             {/* QUICK SHIPMENT DETAILS */}
             <div className="bg-white border-b-2 border-b-primary pt-5 pb-10 px-6">
               {/* SHIPMENT STATUS */}
@@ -236,43 +236,43 @@ export default async function TrackingPage({
               Shipment details
             </div>
 
-            <div className="shipment-details text-sm flex flex-wrap">
-              <div className="w-1/2">
+            <div className="shipment-details text-sm flex flex-col sm:flex-row flex-wrap min-w-min">
+              <div className="w-full sm:w-1/2">
                 <div>Tracking number: </div>
                 <div>{shipmentDetail.tracking_number}</div>
               </div>
 
-              <div className="w-1/2">
+              <div className="w-full sm:w-1/2">
                 <div>Weight: </div>
                 <div>{shipmentDetail.weight}</div>
               </div>
 
-              <div className="w-1/2">
+              <div className="w-full sm:w-1/2">
                 <div>Total pieces: </div>
                 <div>{shipmentDetail.contents.data.length}</div>
               </div>
 
-              <div className="w-1/2">
+              <div className="w-full sm:w-1/2">
                 <div>Special handling: </div>
                 <div></div>
               </div>
 
-              <div className="w-1/2">
+              <div className="w-full sm:w-1/2">
                 <div>Packaging: </div>
                 <div></div>
               </div>
 
-              <div className="w-1/2">
+              <div className="w-full sm:w-1/2">
                 <div>Estimated delivery date: </div>
                 <div>{shipmentDetail.estimated_delivery_date}</div>
               </div>
 
-              <div className="w-1/2">
+              <div className="w-full sm:w-1/2">
                 <div>Shipping date: </div>
                 <div>{shipmentDetail.ship_date}</div>
               </div>
 
-              <div className="w-1/2">
+              <div className="w-full sm:w-1/2">
                 <div>Shipping method: </div>
                 <div></div>
               </div>

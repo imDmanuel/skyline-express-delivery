@@ -10,8 +10,8 @@ export default function ContactPage() {
       {/* CONTACT FORM */}
       <section>
         <div className="container my-10">
-          <div className="flex">
-            <div className="bg-[#E0F0F6] p-20">
+          <div className="flex flex-col md:flex-row">
+            <div className="bg-[#E0F0F6] py-12 px-8 md:p-20">
               <h2 className="text-secondary">Get in Touch with Our Company</h2>
               <p className="text-sm mt-4 mb-7">
                 Have questions or want to chat? Fill out our contact form, and
@@ -20,7 +20,7 @@ export default function ContactPage() {
               <ContactForm />
             </div>
 
-            <div className="bg-primary/30 px-12 flex items-center">
+            <div className="bg-primary/30 max-md:px-8 py-12 px-12 flex items-center">
               <div>
                 <div className="text-lg font-semibold text-secondary mb-8">
                   Headquarters

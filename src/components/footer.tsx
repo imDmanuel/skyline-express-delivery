@@ -17,7 +17,7 @@ import { LuLandmark } from "react-icons/lu";
 export function Footer() {
   return (
     <footer className="bg-secondary text-white">
-      <div className="container flex flex-row flex-wrap gap-x-16 pt-28 pb-14">
+      <div className="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-24 gap-y-16 pt-28 pb-14">
         {/* SUMMARISED ABOUT */}
         <div className="min-w-[250px] max-w-[35%]">
           {/* LOGO */}
@@ -120,19 +120,6 @@ export function Footer() {
         </div>
         {/* END CONTACT DETAILS */}
 
-        {/* LINKS */}
-        <div>
-          <div className="text-lg text-primary">Quick Links</div>
-          <ul className="text-sm space-y-2 mt-3">
-            {routes.map(({ title, href }) => (
-              <li key={href} className="hover:text-gray-500">
-                <Link href={href}>{title}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        {/* END LINKS */}
-
         {/* SERVCIES */}
         <div>
           <div className="text-lg text-primary">Services</div>
@@ -146,6 +133,19 @@ export function Footer() {
           </ul>
         </div>
         {/* END SERVCIES */}
+
+        {/* LINKS */}
+        <div>
+          <div className="text-lg text-primary">Quick Links</div>
+          <ul className="text-sm space-y-2 mt-3">
+            {routes.map(({ title, href }) => (
+              <li key={href} className="hover:text-gray-500">
+                <Link href={href}>{title}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* END LINKS */}
       </div>
 
       <div className="text-xs font-light bg-[#041C2F] py-6">

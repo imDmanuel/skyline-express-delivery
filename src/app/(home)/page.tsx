@@ -72,7 +72,8 @@ export default function Home() {
         {/* END HERO */}
 
         {/* TRUSTED BRANDS BANNER */}
-        <section className="bg-[#E0F0F6]">
+        {/* TODO: MAKE THIS ELEMENT TO PAN OR SCROLL ON SMALL SCREEN SIZES */}
+        <section className="bg-[#E0F0F6] overflow-x-hidden">
           <div className="container gap-6 flex items-center py-6">
             <div className="w-[180px] font-semibold text-secondary">
               We are <span className="text-primary">trusted</span> by major
@@ -127,31 +128,36 @@ export default function Home() {
             {/* END SECTION TITLE */}
 
             {/* SECTION CONTENT - OFFER CARDS */}
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* SEA FORWARDING */}
               <OfferCard title="Sea Forwarding" icon={CargoShipIcon}>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Reiciendis, a at? Fugiat porro, eos nobis aliquid laudantium
-                tempore excepturi, aperiam repudiandae autem illum velit dolore
-                ipsa culpa quidem, doloribus est!
+                At Skyline Express Delivery, we take immense pride in being your
+                trusted partner for all your sea forwarding needs. Our
+                unwavering commitment to efficiency, reliability, and precision
+                drives us to provide a comprehensive suite of services designed
+                to elevate your cargo transportation experience.
               </OfferCard>
               {/* END SEA FORWARDING */}
 
               {/* AIR FREIGHT FORWARDING */}
               <OfferCard title="Air Freight Forwarding" icon={AirPlaneIcon}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa ab
-                ullam optio sed provident deserunt sapiente temporibus maxime,
-                quod nostrum nam at possimus rerum placeat voluptatum!
-                Blanditiis qui atque fugiat.
+                Skyline Express Delivery, is your trusted partner for all your
+                air freight forwarding needs. With our unwavering commitment to
+                efficiency, reliability, and precision, we offer a comprehensive
+                suite of services designed to elevate your cargo transportation
+                experience.
               </OfferCard>
               {/* END AIR FREIGHT FORWARDING */}
 
               {/* LAND TRANSPORTATION */}
               <OfferCard title="Land Transportation" icon={DeliveryTruckIcon}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
-                aspernatur tempore deleniti ex voluptatum est odit ad illum
-                adipisci delectus nisi aperiam debitis molestiae, optio ratione
-                qui a fugit laboriosam!
+                At Skyline Express Delivery, we can be your tested and trusted
+                partner for all your land transportation needs. We are committed
+                to providing reliable, efficient, and comprehensive services to
+                meet your cargo transportation requirements on land. With a
+                focus on precision, safety, and customer satisfaction, we offer
+                a diverse range of land transportation solutions designed to
+                elevate your logistics experience.
               </OfferCard>
               {/* END LAND TRANSPORTATION */}
 
@@ -188,9 +194,9 @@ export default function Home() {
         {/* END WHAT WE OFFER */}
 
         {/* PROUD TO DELIVER EXCELLENCE EVERY TIME */}
-        <section className="bg-primary/40 relative">
+        <section className="bg-primary md:bg-primary/40 relative">
           <div className="container h-96 flex items-center">
-            <div className="max-w-sm">
+            <div className="max-w-sm text-white md:text-black">
               <h2>Proud to Deliver Excellence Every Time</h2>
 
               <p className="mt-5 mb-12 text-sm">
@@ -204,10 +210,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="w-1/2 h-full absolute right-0 top-0">
+          <div className="invisible md:visible md:w-1/2 md:h-full md:absolute md:right-0 md:top-0">
             <Image
               fill
-              className="object-cover -scale-x-100 [clip-path:polygon(0_0,_100%_0%,_80%_100%,_0%_100%)]"
+              className="-z-10 md:z-0 object-cover -scale-x-100 [clip-path:polygon(0_0,_100%_0%,_80%_100%,_0%_100%)]"
               src={ShipTrainPlaneTruck}
               alt=""
             />
@@ -230,7 +236,7 @@ export default function Home() {
             {/* END SECTION TITLE */}
 
             {/* SECTION BODY */}
-            <div className="grid grid-cols-2  gap-10 mt-10 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2  gap-10 mt-10 items-center">
               {/* SECTION FEATURED IMAGE */}
               <div className="relative pb-8">
                 <Image src={ContainerStacked} alt="" />
@@ -290,7 +296,7 @@ export default function Home() {
         {/* END HOW IT WORKS */}
 
         {/* ACHIEVEMENTS COUNTER */}
-        <section className="relative min-h-[400px] flex items-center">
+        <section className="relative min-h-[400px] flex items-center py-16">
           <div className="absolute inset-0 -z-10">
             <Image
               src={ContainersDockyard}
@@ -315,7 +321,7 @@ export default function Home() {
             {/* END SECTION TITLE */}
 
             {/* ACHIEVEMENTS */}
-            <div className="grid grid-cols-4 gap-4 mt-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
               <AchievementCard icon={HandHoldingCard} number={380000}>
                 Parcels Shipped Safely
               </AchievementCard>
@@ -336,7 +342,7 @@ export default function Home() {
 
         {/* FREQUENTLY ASKED QUESTIONS */}
         <section>
-          <div className="container grid gap-8 grid-cols-[4fr_6fr] my-16 items-center">
+          <div className="container grid gap-8 grid-cols-1 md:grid-cols-[4fr_6fr] my-16 items-center">
             {/* SECTION LEFT */}
             <div>
               {/* TITLE */}
@@ -409,7 +415,7 @@ export default function Home() {
             {/* END SECTION TITLE */}
 
             {/* SECTION BODY */}
-            <div className="grid grid-cols-2 gap-14 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
               {/* SECTION FEATURED IMAGE */}
               <div className="relative">
                 {/* IMAGE AND OVERLAY */}

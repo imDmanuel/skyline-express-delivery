@@ -25,7 +25,7 @@ export default function AboutPage() {
                 Who We Are
               </div>
               <div className="text-primary text-3xl font-bold">About Us</div>
-              <p className="text-white text-sm leading-7 max-w-md mx-auto">
+              <p className="text-white text-sm leading-7 max-w-md mx-auto px-8">
                 We have been pioneering the industry in Europe for 20 years, and
                 delivering value products within given timeframe, every single
                 time.
@@ -38,9 +38,10 @@ export default function AboutPage() {
         <section className="mt-20">
           <div className="container">
             {/* SECTIONS GRID CONTAINER */}
+            {/* TODO: IMPLEMENT ALTERNATING COLUMNS */}
             <div className="">
               {/* SECTION 1 */}
-              <div className="grid grid-cols-2 gap-6 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center my-16">
                 <div>
                   <div className="font-semibold text-3xl text-secondary">
                     Simplifying complex shipping challenges with innovative
@@ -76,7 +77,7 @@ export default function AboutPage() {
               {/* END SECTION 1 */}
 
               {/* SECTION 2 */}
-              <div className="grid grid-cols-2 gap-6 items-center mt-16">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center my-16">
                 <Image
                   src={DeliveryPersonShowingClipboard}
                   alt="Delivery person showing clipboard"
@@ -122,7 +123,7 @@ export default function AboutPage() {
               {/* END SECTION 2 */}
 
               {/* SECTION 3 */}
-              <div className="grid grid-cols-2 gap-6 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center my-16">
                 <div>
                   <div className="text-xs bg-primary text-secondary inline-block py-1 px-2 mb-1">
                     History
@@ -158,7 +159,7 @@ export default function AboutPage() {
               {/* END SECTION 3 */}
 
               {/* SECTION 4 */}
-              <div className="grid grid-cols-2 gap-6 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center my-16">
                 {/* IMAGE */}
                 <div>
                   {/* TODO: REPLACE SINGLE IMAGE WITH GRID OF IMAGES AS IN THE DESIGN */}
@@ -201,11 +202,11 @@ export default function AboutPage() {
         {/* BRANCHES SECTION */}
         <section className="my-20">
           <div className="container">
-            <div className="max-w-md mb-6">
-              <h2 className="text-secondary">
-                We have branches in many regions of the worlds
+            <div className="max-w-lg mx-auto mb-6">
+              <h2 className="text-secondary text-center">
+                We have branches in many regions of the world
               </h2>
-              <p className="text-sm mt-2">
+              <p className="text-sm mt-2 text-center">
                 We have experience in handling the formalities and documentation
                 required for your imports and exports. We work with all
                 international station to guarantee that your load will safely
@@ -214,7 +215,7 @@ export default function AboutPage() {
             </div>
 
             {/* BRANCHES GRID */}
-            <div className="grid grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-16">
               {/* BRANCH CARD 1*/}
               <div className="h-[400px] relative">
                 <Image

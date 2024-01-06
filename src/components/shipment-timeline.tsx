@@ -8,7 +8,7 @@ export function ShipmentTimeline({
   shipmentEvents: ShipmentEvent[];
 }) {
   return (
-    <div>
+    <div className="overflow-x-auto">
       {shipmentEvents.map((shipmentEvent) => {
         return (
           <>
